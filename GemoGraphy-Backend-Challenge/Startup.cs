@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GemoGraphy_Backend_Challenge.Controllers;
+using GemoGraphy_Backend_Challenge.Interfaces;
+using GemoGraphy_Backend_Challenge.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +30,7 @@ namespace GemoGraphy_Backend_Challenge
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<IGitHubRepository, GitHubRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GemoGraphy_Backend_Challenge", Version = "v1" });

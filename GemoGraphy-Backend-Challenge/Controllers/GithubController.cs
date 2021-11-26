@@ -21,12 +21,12 @@ namespace GemoGraphy_Backend_Challenge.Controllers
         
         [HttpGet]
         [Route("GetNumberOfReposByLanguage/{language}")]
-        public async Task<ActionResult> GetNumberOfReposByLanguage(string langauge)
+        public async Task<ActionResult> GetNumberOfReposByLanguage(string language)
         {
             try
             {
                 var allRepos = await _gitHubRepository.GetAllReposAsync();
-                var result = await _gitHubRepository.GetNumberOfReposByLanguageAsync(allRepos, langauge);
+                var result = await _gitHubRepository.GetNumberOfReposByLanguageAsync(allRepos, language);
                 return Ok(result);
             }
             catch (Exception e)
@@ -37,12 +37,12 @@ namespace GemoGraphy_Backend_Challenge.Controllers
 
         [HttpGet]
         [Route("GetReposByLanguage/{language}")]
-        public async Task<ActionResult> GetReposByLanguage(string langauge)
+        public async Task<ActionResult> GetReposByLanguage(string language)
         {
             try
             {
                 var allRepos = await _gitHubRepository.GetAllReposAsync();
-                var result = await _gitHubRepository.GetReposByLanguageAsync(allRepos, langauge);
+                var result = await _gitHubRepository.GetReposByLanguageAsync(allRepos, language);
                 return Ok(result);
             }
             catch (Exception e)

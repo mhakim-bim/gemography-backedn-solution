@@ -34,8 +34,11 @@ namespace GemoGraphy_Backend_Challenge.Repositories
 
         public async Task<int> GetNumberOfReposByLanguageAsync(IEnumerable<GithubRepo> githubRepos, string language)
         {
+            if(string.IsNullOrEmpty(language))
+                throw new ArgumentNullException(nameof(language) ,"Language can't be null");
+            
             return await Task.Run(() => githubRepos
-                .Count(g => g.language != null && g.language.ToLower() == language.ToLower()));
+                .Count(g => g.language != null && String.Equals(g.language, language, StringComparison.CurrentCultureIgnoreCase)));
         }
 
         public async Task<IEnumerable<GithubRepo>> GetReposByLanguageAsync(IEnumerable<GithubRepo> githubRepos,string language)
