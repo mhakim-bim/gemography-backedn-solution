@@ -43,6 +43,9 @@ namespace GemoGraphy_Backend_Challenge.Repositories
 
         public async Task<IEnumerable<GithubRepo>> GetReposByLanguageAsync(IEnumerable<GithubRepo> githubRepos,string language)
         {
+            if(string.IsNullOrEmpty(language))
+                throw new ArgumentNullException(nameof(language) ,"Language can't be null");
+            
             return await Task.Run(() => githubRepos
                 .Where(g => g.language != null && g.language.ToLower() == language.ToLower()));
         }
